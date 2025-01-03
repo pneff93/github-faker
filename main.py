@@ -30,8 +30,10 @@ def is_commit_day():
 
 def random_time_delay():
     """Introduce random delay between commits to simulate realistic activity."""
-    time.sleep(random.randint(1, 1800))  # Delay between 1 second and 30 minutes
-    
+    sleep = random.randint(1, 1800)
+    print(f"Wait for {sleep/60}")
+    time.sleep(sleep)  # Delay between 1 second and 30 minutes
+        
 
 def update_file():
     """Update a file in the repository."""
@@ -47,8 +49,8 @@ def commit_and_push(repo_path, num_commits):
         repo.git.add(FILE_PATH)
         repo.index.commit(f"Commit: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
         random_time_delay()
-    origin = repo.remote(name="origin")
-    origin.push(refspec="main:main")
+        origin = repo.remote(name="origin")
+        origin.push(refspec="main:main")
 
 
 if __name__ == "__main__":
